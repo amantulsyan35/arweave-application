@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import Arweave from 'arweave';
 import './Create.css';
-import { useHistory } from 'react-router-dom';
 
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-  timeout: 20000,
-  logging: false,
-});
+import { createDataTransaction, signAndSubmitTransaction } from './Arweave';
+import { useHistory } from 'react-router-dom';
 
 const Create = (props) => {
   const [confessions, setConfessions] = useState([]);
@@ -17,7 +10,6 @@ const Create = (props) => {
   const [bio, setBio] = useState('');
   const [conf, setConf] = useState('');
   let history = useHistory();
-  const { REACT_APP_KEY } = process.env;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,16 +20,13 @@ const Create = (props) => {
     setConfessions([...confessions, newUser]);
 
     // First we create the transaction
-    const transaction = arweave.createTransaction(
-      {
-        data: JSON.stringify(newUser),
-      },
-      REACT_APP_KEY
+    let transaction = await createDataTransaction(
+      newUser,
+      JSON.parse(WalletAddress)
     );
-    // Now we sign the transaction
-    await arweave.transactions.sign(transaction, REACT_APP_KEY);
-    // After is signed, we send the transaction
-    await arweave.transaction.post(transaction);
+
+    // Now we sign and submit the transaction
+    await signAndSubmitTransaction(transaction, JSON.parse(WalletAddress));
 
     history.push('/');
   };

@@ -18,11 +18,11 @@ async function getAddressBalance(key) {
   return convert;
 }
 
-async function createDataTransaction(imgFile, key) {
-  let transform = JSON.stringify(imgFile);
+async function createDataTransaction(data, key) {
+  let transform = JSON.stringify(data);
   let transaction = await arweave.createTransaction({ data: transform }, key);
 
-  transaction.addTag('Application', 'armeme-gallery-2021');
+  transaction.addTag('Application', 'arweave-confessions');
 
   return transaction;
 }
@@ -38,19 +38,19 @@ async function getTransactionData(id) {
 }
 
 async function queryData(key) {
-  let walletAddy = await getWalletAddress(key);
-  walletAddy = walletAddy.toString();
+  let walletAddress = await getWalletAddress(key);
+  walletAddress = walletAddress.toString();
   const txids = await arweave.arql({
     op: 'and',
     expr1: {
       op: 'equals',
       expr1: 'from',
-      expr2: walletAddy,
+      expr2: walletAddress,
     },
     expr2: {
       op: 'equals',
       expr1: 'Application',
-      expr2: 'armeme-gallery-2021',
+      expr2: 'arweave-confessions',
     },
   });
 
