@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.User-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  margin: auto;
+  background-color: #f8edeb;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 2em;
+}
+
+.User-avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 1em;
+  background-color: #d8e2dc;
+}
+
+.User-avatar img {
+  width: 100%;
+}
+
+.User-conf {
+  background-color: #ffe5d9;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
