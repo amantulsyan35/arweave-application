@@ -1,15 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
+.View-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+  width: 80%;
+  margin: auto;
+  margin-top: 5em;
+  height: 100%;
+}
+
 .User-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20%;
-  margin: auto;
+  width: 100%;
+  height: 100%;
   background-color: #f8edeb;
   font-family: 'Playfair Display', serif;
-  margin-bottom: 2em;
 }
 
 .User-avatar {
@@ -17,11 +26,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
   margin-top: 2em;
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  padding: 1em;
+  padding: 0.5em;
   background-color: #d8e2dc;
 }
 
@@ -29,9 +39,53 @@
   width: 100%;
 }
 
+.User-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+.User-details span {
+  margin-bottom: 1em;
+}
+
 .User-conf {
   background-color: #ffe5d9;
   width: 100%;
+  height: 100%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.User-conf button {
+  border: none;
+  outline: none;
+  padding: 1em;
+  width: 70%;
+  background-color: #f8edeb;
+}
+
+.User-qr-code {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.User-qr-code span {
+  margin-top: 1em;
+}
+
+.User-qr-image {
+  border: 10px solid #ffe5d9;
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;

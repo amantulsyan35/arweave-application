@@ -1,15 +1,16 @@
 .Navbar {
-  margin-top: 2em;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  padding: 1em;
+  background-color: #6b705c;
 }
 
 a {
-  color: black;
+  color: #ffe8d6;
   text-decoration: none;
+  margin-right: 1em;
 }
 
 .active-link {
-  color: blue;
+  color: #b7b7a4;
 }

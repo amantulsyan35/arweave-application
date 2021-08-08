@@ -7,13 +7,13 @@ const Navbar = () => {
   return (
     <div className='Navbar'>
       <NavLink exact activeClassName='active-link' to='/'>
-        Homepage
+        Home
       </NavLink>
       <NavLink exact activeClassName='active-link' to='/create'>
         Create
       </NavLink>
       <NavLink exact activeClassName='active-link' to='/view'>
-        View Confessions
+        View
       </NavLink>
       <NavLink exact activeClassName='active-link' to='/about'>
         About

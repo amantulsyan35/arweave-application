@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import './Create.css';
-
 import { createDataTransaction, signAndSubmitTransaction } from './Arweave';
 import { useHistory } from 'react-router-dom';
+import form from './form.svg';
+
+require('dotenv').config({ path: '../' });
 
 const Create = (props) => {
+  console.log();
+
   const [confessions, setConfessions] = useState([]);
   const [text, setText] = useState('');
   const [bio, setBio] = useState('');
@@ -22,43 +26,55 @@ const Create = (props) => {
     // First we create the transaction
     let transaction = await createDataTransaction(
       newUser,
-      JSON.parse(WalletAddress)
+      JSON.parse(process.env.REACT_APP_MY_API_KEY)
     );
 
     // Now we sign and submit the transaction
-    await signAndSubmitTransaction(transaction, JSON.parse(WalletAddress));
+    await signAndSubmitTransaction(
+      transaction,
+      JSON.parse(process.env.REACT_APP_MY_API_KEY)
+    );
 
     history.push('/');
   };
 
   return (
     <div className='Create'>
-      <form onSubmit={handleSubmit}>
-        <label>Enter Name</label>
-        <br />
-        <input
-          type='text'
-          id='name'
-          name='text'
-          onChange={(e) => setText(e.target.value)}
-        />
-        <br />
-        <label>Enter Bio</label>
-        <br />
-        <textarea
-          id='bio'
-          name='bio'
-          onChange={(e) => setBio(e.target.value)}
-        ></textarea>
-        <label>Enter Confession</label>
-        <br />
-        <textarea
-          id='confession'
-          name='conf'
-          onChange={(e) => setConf(e.target.value)}
-        ></textarea>
-        <input id='submit' type='submit' />
-      </form>
+      <div className='Create-1'>
+        <form onSubmit={handleSubmit}>
+          <div className='Form-group'>
+            <label>Enter Name</label>
+            <input
+              type='text'
+              id='name'
+              name='text'
+              onChange={(e) => setText(e.target.value)}
+            />
+          </div>
+          <div className='Form-group'>
+            <label>Enter Bio</label>
+            <textarea
+              id='bio'
+              name='bio'
+              onChange={(e) => setBio(e.target.value)}
+            ></textarea>
+          </div>
+          <div className='Form-group'>
+            <label>Enter Confession</label>
+            <textarea
+              id='confession'
+              name='conf'
+              onChange={(e) => setConf(e.target.value)}
+            ></textarea>
+          </div>
+          <button id='submit' type='submit'>
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className='Create-2'>
+        <img src={form} alt='form' />
+      </div>
     </div>
   );
 };
