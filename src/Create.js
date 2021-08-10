@@ -7,8 +7,6 @@ import form from './form.svg';
 require('dotenv').config({ path: '../' });
 
 const Create = (props) => {
-  console.log();
-
   const [confessions, setConfessions] = useState([]);
   const [text, setText] = useState('');
   const [bio, setBio] = useState('');
@@ -18,7 +16,8 @@ const Create = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newUser = { name: text, bio: bio, confession: conf };
+    const newUser = { name: text, bio: bio, confession: conf, clicked: false };
+    // console.log(newUser);
 
     props.getData(newUser);
     setConfessions([...confessions, newUser]);

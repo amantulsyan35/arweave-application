@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getTransactionData, queryData } from './Arweave';
+import { v4 as uuidv4 } from 'uuid';
 import './View.css';
 import Identicon from 'react-identicons';
 import QRCode from 'react-qr-code';
 require('dotenv').config({ path: '../' });
 const generate = require('project-name-generator');
 
-const View = (props) => {
+const View = () => {
   const [confessions, setConfessions] = useState([]);
   const [clicked, setClicked] = useState(false);
 
@@ -24,11 +25,11 @@ const View = (props) => {
           let data = await getTransactionData(response[i]);
 
           let parseData = JSON.parse(data);
+          // console.log(parseData);
 
           arr.push(parseData);
-          // console.log(arr);
-          setConfessions(arr);
         }
+        setConfessions(arr);
       } catch (e) {
         throw e;
       }
@@ -46,14 +47,10 @@ const View = (props) => {
       <div className='View-container'>
         {confessions.map((c) => {
           return (
-            <div key={c.name} className='User-card'>
+            <div key={uuidv4()} className='User-card'>
               {clicked === false && (
                 <div>
                   <div className='User-avatar'>
-                    {/*<img
-                      src={`https://robohash.org/${c.name}`}
-                      alt={c.name}
-                    ></img>*/}
                     <Identicon string='randomness' size='30' />
                   </div>
 
@@ -66,10 +63,6 @@ const View = (props) => {
               {clicked === true && (
                 <div className='User-qr-code'>
                   <div className='User-qr-image'>
-                    {/*<img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?data=${c.confession}&amp;size=100x100`}
-                      alt={c.confession}
-                    />*/}
                     <QRCode value={c.confession} size='128' />
                   </div>
                   <span>Scan to see the confession</span>
