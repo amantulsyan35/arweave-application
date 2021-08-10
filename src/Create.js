@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './Create.css';
 import { createDataTransaction, signAndSubmitTransaction } from './Arweave';
 import { useHistory } from 'react-router-dom';
-import form from './form.svg';
 
 require('dotenv').config({ path: '../' });
 
@@ -72,7 +71,10 @@ const Create = (props) => {
         </form>
       </div>
       <div className='Create-2'>
-        <img src={form} alt='form' />
+        <img
+          src='https://cdn.dribbble.com/users/1873950/screenshots/7644328/media/04aeb6a5e26c75043d01bdd825cd10a7.jpg?compress=1&resize=400x300'
+          alt='form'
+        />
       </div>
     </div>
   );

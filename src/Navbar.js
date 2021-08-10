@@ -15,9 +15,6 @@ const Navbar = () => {
       <NavLink exact activeClassName='active-link' to='/view'>
         View
       </NavLink>
-      <NavLink exact activeClassName='active-link' to='/about'>
-        About
-      </NavLink>
     </div>
   );
 };
